@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.intpict.demo.dao.IEmpDao" >
+  <resultMap id="BaseResultMap" type="com.intpict.demo.entity.Emp" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="department_no" property="departmentNo" jdbcType="CHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="hire_date" property="hireDate" jdbcType="TIMESTAMP" />
+    <result column="sale" property="sale" jdbcType="DECIMAL" />
+  </resultMap>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select *
+    from ls_emp
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ls_emp
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.intpict.demo.entity.Emp" >
+    insert into ls_emp (id, department_no, name, 
+      gender, age, hire_date, 
+      sale)
+    values (#{id,jdbcType=INTEGER}, #{departmentNo,jdbcType=CHAR}, #{name,jdbcType=VARCHAR}, 
+      #{gender,jdbcType=VARCHAR}, #{age,jdbcType=INTEGER}, #{hireDate,jdbcType=TIMESTAMP}, 
+      #{sale,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.intpict.demo.entity.Emp" >
+    insert into ls_emp
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="departmentNo != null" >
+        department_no,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="age != null" >
+        age,
+      </if>
+      <if test="hireDate != null" >
+        hire_date,
+      </if>
+      <if test="sale != null" >
+        sale,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="departmentNo != null" >
+        #{departmentNo,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        #{age,jdbcType=INTEGER},
+      </if>
+      <if test="hireDate != null" >
+        #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sale != null" >
+        #{sale,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.intpict.demo.entity.Emp" >
+    update ls_emp
+    <set >
+      <if test="departmentNo != null" >
+        department_no = #{departmentNo,jdbcType=CHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="age != null" >
+        age = #{age,jdbcType=INTEGER},
+      </if>
+      <if test="hireDate != null" >
+        hire_date = #{hireDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sale != null" >
+        sale = #{sale,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.intpict.demo.entity.Emp" >
+    update ls_emp
+    set department_no = #{departmentNo,jdbcType=CHAR},
+      name = #{name,jdbcType=VARCHAR},
+      gender = #{gender,jdbcType=VARCHAR},
+      age = #{age,jdbcType=INTEGER},
+      hire_date = #{hireDate,jdbcType=TIMESTAMP},
+      sale = #{sale,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
