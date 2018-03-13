@@ -1,9 +1,13 @@
 package com.intpict.demo.entity;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
 
-public class Emp {
+public class Emp implements Serializable {
+
+    private static final long serialVersionUID = -3153503786093370069L;
+
     private Integer id;
 
     private String departmentNo;
