@@ -14,7 +14,7 @@
     <!-- 当发生增删改操作时，会清空二级缓存 -->
     <cache/>
 
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" useCache="true">
         SELECT *
         FROM ls_emp
         WHERE id = #{id,jdbcType=INTEGER}
